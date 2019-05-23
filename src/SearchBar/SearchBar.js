@@ -27,8 +27,8 @@ const StyledInputBase = styled(InputBase)`
 `;
 
 const SearchBar = props => {
-    const onSearchTermChange = debounce(400, (event) => {
-        console.log(event);
+    const onSearchTermChange = debounce(400, searchTerm => {
+        props.searchImages(searchTerm);
     });
 
     return (
@@ -37,7 +37,7 @@ const SearchBar = props => {
                 <IconButton aria-label="Search">
                     <Search/>
                 </IconButton>
-                <StyledInputBase onChange={onSearchTermChange} placeholder="Please Enter a search Term"/>
+                <StyledInputBase onChange={event => onSearchTermChange(event.target.value)} placeholder="Please Enter a search Term"/>
             </StyledSearchBarPaper>
         </StyledSearchBarContainer>
     )
