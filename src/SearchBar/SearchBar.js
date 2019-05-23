@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import {Search} from '@material-ui/icons'
 import {IconButton, InputBase, Paper} from "@material-ui/core";
+import {debounce} from "throttle-debounce";
 
 const StyledSearchBarPaper = styled(Paper)`
   height: 50px;
@@ -26,13 +27,17 @@ const StyledInputBase = styled(InputBase)`
 `;
 
 const SearchBar = props => {
+    const onSearchTermChange = debounce(400, (event) => {
+        console.log(event);
+    });
+
     return (
         <StyledSearchBarContainer>
             <StyledSearchBarPaper>
                 <IconButton aria-label="Search">
                     <Search/>
                 </IconButton>
-                <StyledInputBase placeholder="Please Enter a search Term"/>
+                <StyledInputBase onChange={onSearchTermChange} placeholder="Please Enter a search Term"/>
             </StyledSearchBarPaper>
         </StyledSearchBarContainer>
     )
