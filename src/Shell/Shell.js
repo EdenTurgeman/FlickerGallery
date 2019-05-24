@@ -8,29 +8,22 @@ const StyledShell = styled.div`
   height: 100%;
   display: flex;
   flex-flow: column;
-  background-color: ${props => {
-    console.log(props);
-    return props.theme.palette.primary.main
-}};
+  background-color: ${props => props.theme.palette.primary.main};
 `;
 
 const Shell = props => {
-        const [images, setImages] = useState([]);
+    const [searchTerm, setSearchTerm] = useState("");
 
-        const searchImages = searchTerm => {
-            if (!searchTerm) {
-                setImages([]);
-            }
-            console.log(searchTerm)
-        };
+    const searchImages = inputValue => {
+        setSearchTerm(inputValue);
+    };
 
-        return (
-            <StyledShell>
-                <SearchBar searchImages={searchImages}/>
-                <Gallery/>
-            </StyledShell>
-        )
-    }
-;
+    return (
+        <StyledShell>
+            <SearchBar searchImages={searchImages}/>
+            <Gallery searchTerm={searchTerm}/>
+        </StyledShell>
+    )
+};
 
 export default Shell;
