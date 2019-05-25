@@ -4,7 +4,6 @@ import SearchBar from "../SearchBar/SearchBar";
 import Gallery from "../Gallery/Gallery";
 import {searchPhotos} from "../../vendor/searchFlicker";
 import SaveSearchSnackbar from "./SaveSearchSnackbar/SaveSearchSnackbar";
-import LoadSearchesDialog from "../LoadSearchesDialog/LoadSearchesDialog";
 
 const StyledShell = styled.div`
   width: 100%;
@@ -20,7 +19,6 @@ const Shell = props => {
     const [loadingPhotos, setLoadingPhotos] = useState(false);
     //const [openLoadSearches, setopenLoadSearches] = useState(false);
     const [searchSaved, setSearchSaved] = useState(false);
-
 
 
     const saveSearch = () => {
@@ -50,10 +48,21 @@ const Shell = props => {
         }
     };
 
+    const loadImagesPage = page => {
+        if (!loadingPhotos) {
+            setLoadingPhotos(true);
+
+            searchPhotos(searchTerm, page).then(photos => {
+                setPhotoPages([...photoPages, ...photos]);
+                setLoadingPhotos(false);
+            })
+        }
+    };
+
     return (
         <StyledShell>
             <SearchBar saveSearch={saveSearch} searchImages={searchImages}/>
-            <Gallery photoPages={photoPages} isLoading={loadingPhotos}/>
+            <Gallery loadMore={loadImagesPage} photoPages={photoPages} isLoading={loadingPhotos}/>
             <SaveSearchSnackbar open={searchSaved} onClose={() => setSearchSaved(false)}/>
         </StyledShell>
     )
