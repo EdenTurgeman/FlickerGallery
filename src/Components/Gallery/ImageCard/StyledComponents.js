@@ -21,6 +21,5 @@ export const StyledDescription = styled.div`
   width: 100%;
   bottom: 0;
   z-index: 20;
-  background-color: #616161;
-  opacity: 0.85;
+  background-color: rgba(66, 66, 66, 0.7);
 `;

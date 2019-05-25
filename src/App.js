@@ -1,5 +1,5 @@
 import React from 'react';
-import Shell from "./Shell/Shell";
+import Shell from "./Components/Shell/Shell";
 import {ThemeProvider} from 'styled-components'
 import {blueGrey} from '@material-ui/core/colors'
 import {createMuiTheme} from "@material-ui/core";
