@@ -62,7 +62,10 @@ const Shell = props => {
     return (
         <StyledShell>
             <SearchBar saveSearch={saveSearch} searchImages={searchImages}/>
-            <Gallery loadMore={loadImagesPage} photoPages={photoPages} isLoading={loadingPhotos}/>
+            <Gallery searchTerm={searchTerm}
+                     loadMore={loadImagesPage}
+                     photoPages={photoPages}
+                     isLoading={loadingPhotos}/>
             <SaveSearchSnackbar open={searchSaved} onClose={() => setSearchSaved(false)}/>
         </StyledShell>
     )

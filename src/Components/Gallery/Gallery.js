@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {CircularProgress} from "@material-ui/core";
 import BottomScrollListener from 'react-bottom-scroll-listener'
 import ImageCard from "./ImageCard/ImageCard";
@@ -18,9 +18,15 @@ const Gallery = props => {
     const [currentPage, setCurrentPage] = useState(1);
 
     const loadPage = () => {
-        setCurrentPage(currentPage + 1);
-        props.loadMore(currentPage + 1);
+        if (!props.isLoading) {
+            setCurrentPage(currentPage + 1);
+            props.loadMore(currentPage + 1);
+        }
     };
+
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [props.searchTerm])
 
     return (
         <BottomScrollListener onBottom={loadPage}>
